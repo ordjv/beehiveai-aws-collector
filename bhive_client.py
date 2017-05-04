@@ -14,7 +14,7 @@ class BhiveClient(object):
 		for resev in response.get('Reservations', []):
 			for inst in resev.get('Instances', []):
 				name = ''
-				for t in inst['Tags']:
+				for t in inst.get('Tags', []):
 					if t['Key'] == 'Name':
 						name = t['Value']
 				text.append("*%s* : _%s_" % (name, inst.get('PublicIpAddress')))
@@ -45,4 +45,6 @@ class BhiveClient(object):
 		if method == 'POST':
 			return requests.post(url, data=data, headers=headers).json()
 
+	def run(self):
+		b.post_instances_public_ip_address()
 
