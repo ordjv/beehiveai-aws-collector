@@ -10,6 +10,9 @@ BHIVE_API_TOKEN=xxx
 BHIVE_API_TOKEN
 * The token used for connecting to Beehive AI API
 
+BEEHIVEAI_CHECK_INTERVAL
+* How often information from aws services is gathered
+
 ## Running
 
 ```shell

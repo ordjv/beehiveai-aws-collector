@@ -8,6 +8,9 @@ class BhiveClient(object):
 		self.api_token = api_token
 		self.ec2client = boto3.client('ec2')
 
+	def run(self):
+		self.post_instances_public_ip_address()
+		
 	def post_instances_public_ip_address(self):
 		response = self.ec2client.describe_instances()
 		text = []
@@ -45,6 +48,4 @@ class BhiveClient(object):
 		if method == 'POST':
 			return requests.post(url, data=data, headers=headers).json()
 
-	def run(self):
-		b.post_instances_public_ip_address()
 
