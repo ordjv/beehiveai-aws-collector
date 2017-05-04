@@ -1,0 +1,11 @@
+version: '2'
+services:
+  beehiveai-collector:
+    volumes:
+      - .:/code
+    build: .
+    environment:
+      - BEEHIVEAI_CHECK_INTERVAL=9600
+      - BHIVE_API_TOKEN=xxxx
+    volumes:
+      - ~/.aws:/root/.aws
