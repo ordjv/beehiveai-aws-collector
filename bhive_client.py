@@ -17,13 +17,14 @@ class BhiveClient(object):
 		for resev in response.get('Reservations', []):
 			for inst in resev.get('Instances', []):
 				name = ''
+				state = inst.get('State', {}).get('Name', '')
 				for t in inst.get('Tags', []):
 					if t['Key'] == 'Name':
 						name = t['Value']
-				text.append("*%s* : _%s_" % (name, inst.get('PublicIpAddress')))
+				text.append("*%s* [%s]:\t_%s_" % (name, state, inst.get('PublicIpAddress')))
 		if text:
 			return self.update_integration(integration_id='post_instances_public_ip_address', data={
-				"title": "ec2 public ips", "text":"\n".join(text)})
+				"title": "EC2 public IPs", "text":"\n".join(text), "tags": "aws,amazon,servers,server,list"})
 
 	def create_integration(self, integration_id):
 		self.call_api(

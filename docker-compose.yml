@@ -5,7 +5,7 @@ services:
       - .:/code
     build: .
     environment:
-      - BEEHIVEAI_CHECK_INTERVAL=3600
-      - BHIVE_API_TOKEN=xxxx
+      - BEEHIVEAI_CHECK_INTERVAL=-1
+      - BHIVE_API_TOKEN=''
     volumes:
       - ~/.aws:/root/.aws
